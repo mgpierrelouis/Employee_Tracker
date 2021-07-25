@@ -1,7 +1,10 @@
-1, Sales Lead, 45.000, 4
+1, Sales Manager, 55.000, 4
 2, Sales Associate, 40.000, 4
-3, Chief Engineer, 65.000, 1
-4, Associate Engineer, 58.000, 1
-5, Customer Service Rep, 50.000, 3
-6, Human Resources, 50.000, 2
-7, Adminstrator, 75.00, 5
+3, Chief Engineer, 70.000, 1
+4, Associate Engineer, 63.000, 1
+5, Customer Service Manager, 60.000, 3
+6, Customer Service Rep, 50.000, 3
+7, Human Resources Manger, 60.000, 2
+8, Human Resources, 50.000, 2
+9, Chief Administrator, 85.000, 5
+10, Adminstrating Officer, 75.000, 5

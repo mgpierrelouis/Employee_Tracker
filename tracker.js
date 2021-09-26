@@ -282,3 +282,121 @@ const selectByRole = () => {
        })
 };
 
+const addDepartment = () => { 
+    inquirer
+    .prompt({ 
+        name: 'deptName',
+        type: 'input',
+        message: 'What is the name of this department?'  
+    })
+    .then((answer) => {
+        const newDept = `INSERT INTO department (name) VALUES ('${answer.deptName}')`;
+        connection.query(newDept, (err, res) => {
+            console.log(err)
+
+         })
+         viewDepartments()
+
+    })
+
+};
+
+const addRole = () => {
+    
+    const query = 'SELECT * FROM department';
+        connection.query(query, (err,res) => {
+            console.table(res);
+            console.log(err);
+        });  
+        
+    inquirer
+    .prompt([{
+        name: 'roleTitle',
+        type: 'input',
+        message: 'What is the name of this role?',
+    },
+    {
+        name: 'roleSalary',
+        type: 'input',
+        message: "What is this role's salary?",
+
+
+    },
+    {
+        name: 'deptId',
+        type: 'input',
+        message: 'Input the corresponding department ID (reference department list above):'
+    }])
+    .then((answer) => {
+        const newRole = `INSERT INTO role (title, salary, department_id) VALUES ('${answer.roleTitle}', '${answer.roleSalary}', '${answer.deptId}')`
+        connection.query(newRole, (err, res) => {
+            console.log(err)
+        });
+
+        viewRole()
+    })
+}
+
+const addEmployee = () => {
+    const query = 'SELECT * FROM role';
+    connection.query(query, (err,res) => {
+        console.table(res);
+        console.log(err);
+    });
+    
+    console.log('Manager List:');
+
+    const query2= 'SELECT * FROM employee WHERE manager_id IS null';
+    connection.query(query2, (err,res) => {
+        console.table(res);
+        console.log(err);
+    });
+
+    inquirer
+    .prompt([{
+        name: 'lastname',
+        type: 'input',
+        message: 'Last Name:'
+    },
+    {
+        name: 'firstname',
+        type: 'input',
+        message: 'First Name:'
+    },
+    {
+        name: 'roleid',
+        type: 'input',
+        message: 'Role ID (refer to role list above):' 
+    },
+    {
+        name: 'hasmanager',
+        type: 'confirm',
+        message: 'Does this employee have a manager?',   
+    }, 
+    {
+        when: function (response) {
+            return response.hasmanager;
+        },
+            name: 'managerid',
+            type: 'input',
+            message: 'Manager ID (refer to manager list above):'   
+        
+    }], 
+    (response)=>{})
+    .then((answer) => {
+        const newEmployee = `INSERT INTO employee (last_name, first_name, role_id, manager_id) VALUES ('${answer.lastname}', '${answer.firstname}', '${answer.roleid}', '${answer.managerid}')`;
+        if(answer.hasmanager){
+            connection.query(newEmployee, (err, res) => {
+                console.log(err)
+            });
+
+        } else {
+            const newManager = `INSERT INTO employee (last_name, first_name, role_id) VALUES ('${answer.lastname}', '${answer.firstname}', '${answer.roleid}')`;
+            connection.query(newManager, (err, res) => {
+                console.log(err)
+                })
+            }
+        
+        viewAllEmployees()
+    })
+}

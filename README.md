@@ -5,9 +5,9 @@
 ## Summary
 
 The Employee Tracker app is a Node app that allow the user to view employees working in a company, as well as sort employees by role and department. The Application also allow the user to add employees, roles, and departments and store the information using MySQL.
-## Application Demo
+## Application Screenshot
 
-![application screenshot](screenshot.gif)
+![application screenshot](screenshot.png)
 
 
 ## Techonlogies

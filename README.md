@@ -27,7 +27,7 @@ The Employee Tracker app is a Node app that allow the user to view employees wor
 ## Links
 
 - [Video Demonstration](https://watch.screencastify.com/v/Hwvzr7aFKAz9zeLyJjnH)
-- [Github Repository](https://github.com/mgpierrelouis/reactportfolio/)
+- [Github Repository](https://github.com/mgpierrelouis/Employee_Tracker/)
 
 ## Licenses
 
